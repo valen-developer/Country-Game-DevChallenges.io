@@ -10,7 +10,6 @@ export class CountryRepository {
 
   constructor(private countryService: CountryService) {
     this.countries = new Array<Country>();
-    this.setAllFromJsonList();
   }
 
   private async setAllFromJsonList(): Promise<void> {
@@ -18,7 +17,7 @@ export class CountryRepository {
 
     jsonList.forEach((item) => {
       if (item.capital)
-        this.countries.push(new Country(item.name, item.capital));
+        this.countries.push(new Country(item.name, item.capital, item.flag));
     });
   }
 

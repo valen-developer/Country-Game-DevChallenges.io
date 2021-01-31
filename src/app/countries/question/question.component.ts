@@ -5,6 +5,10 @@ import { Country } from 'src/domain/country';
 import { CountryRepository } from '../services/countryService/countryRepository';
 import { QuizStateService } from '../services/quiz-state/quizState.service';
 
+const enum questionTypes {
+  flag,
+  capital,
+}
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -17,9 +21,12 @@ export class QuestionComponent implements OnInit {
 
   public isAnswered = false;
   public answeredCount = 0;
-  private results = 0;
 
   public form: FormGroup;
+
+  private results = 0;
+  private questionType = questionTypes.capital;
+  private questionTypesArray = [questionTypes.capital, questionTypes.flag];
 
   constructor(
     private countryRepository: CountryRepository,
@@ -63,6 +70,20 @@ export class QuestionComponent implements OnInit {
   }
 
   private checkAnswer(): void {
+    switch (this.questionType) {
+      case questionTypes.capital:
+        this.checkCapitalQuestion();
+        break;
+      case questionTypes.flag:
+        this.checkFlagQuestion();
+        break;
+      default:
+        this.checkCapitalQuestion();
+        break;
+    }
+  }
+
+  private checkCapitalQuestion(): void {
     const capitalInForm = this.form.value.answer;
 
     for (let i = 0; i < this.countries.length; i++) {
@@ -82,6 +103,31 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  private checkFlagQuestion(): void {
+    const countryInForm = this.form.value.answer;
+
+    for (let i = 0; i < this.countries.length; i++) {
+      if (countryInForm === this.countries[i].name) {
+        const ele = document.getElementById(`${i}`);
+        if (countryInForm !== this.selectedCountry.name) {
+          ele.style.backgroundColor = 'red';
+        } else {
+          this.results++;
+        }
+      }
+
+      if (this.selectedCountry.name === this.countries[i].name) {
+        const ele = document.getElementById(`${i}`);
+        ele.style.backgroundColor = 'green';
+      }
+    }
+  }
+
+  public isCapitalQuestion(): boolean {
+    if (this.questionType === questionTypes.capital) return true;
+    return false;
+  }
+
   private async setQuestion(): Promise<void> {
     this.countries = [];
     this.loading = true;
@@ -91,6 +137,9 @@ export class QuestionComponent implements OnInit {
     }
 
     this.selectedCountry = this.countries[Math.floor(Math.random() * 4)];
+    this.questionType = this.questionTypesArray[
+      Math.floor(Math.random() * this.questionTypesArray.length)
+    ];
 
     this.loading = false;
   }

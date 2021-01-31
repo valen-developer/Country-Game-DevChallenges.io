@@ -1,42 +1,87 @@
 <div class="fade-in">
   <div *ngIf="!loading">
-    <p class="title">What is the capital of {{ selectedCountry.name }}?</p>
+    <div *ngIf="isCapitalQuestion()">
+      <p class="title">What is the capital of {{ selectedCountry.name }}?</p>
 
-    <div class="form" (ngSubmit)="onSubmit()">
-      <form [formGroup]="form">
-        <div *ngFor="let country of countries; index as i">
-          <label for="{{ country.capital }}">
-            <div class="answer" [id]="i" (click)="selectAnswerStyle(i)">
-              <input
-                type="radio"
-                style="display: none"
-                [id]="country.capital"
-                [value]="country.capital"
-                formControlName="answer"
-              />
+      <div class="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form">
+          <div *ngFor="let country of countries; index as i">
+            <label for="{{ country.capital }}">
+              <div class="answer" [id]="i" (click)="selectAnswerStyle(i)">
+                <input
+                  type="radio"
+                  style="display: none"
+                  [id]="country.capital"
+                  [value]="country.capital"
+                  formControlName="answer"
+                />
 
-              {{ country.capital }}
-            </div>
-          </label>
-        </div>
+                {{ country.capital }}
+              </div>
+            </label>
+          </div>
 
-        <div class="button">
-          <button
-            class="btn btn-primary"
-            *ngIf="!isAnswered"
-            (click)="onSubmit()"
-          >
-            Check
-          </button>
-          <button
-            class="btn btn-secondary"
-            *ngIf="isAnswered"
-            (click)="nextQuestion()"
-          >
-            Next
-          </button>
-        </div>
-      </form>
+          <div class="button">
+            <button
+              class="btn btn-primary"
+              *ngIf="!isAnswered"
+              (click)="onSubmit()"
+            >
+              Check
+            </button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="isAnswered"
+              (click)="nextQuestion()"
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="!isCapitalQuestion()">
+      <p class="title">What country is belong of this flag?</p>
+
+      <img [src]="selectedCountry.flagUrl" alt="flag" width="100" />
+
+      <div class="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form">
+          <div *ngFor="let country of countries; index as i">
+            <label for="{{ country.name }}">
+              <div class="answer" [id]="i" (click)="selectAnswerStyle(i)">
+                <input
+                  type="radio"
+                  style="display: none"
+                  [id]="country.name"
+                  [value]="country.name"
+                  formControlName="answer"
+                />
+
+                {{ country.name }}
+              </div>
+            </label>
+          </div>
+
+          <div class="button">
+            <button
+              class="btn btn-primary"
+              *ngIf="!isAnswered"
+              (click)="onSubmit()"
+            >
+              Check
+            </button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="isAnswered"
+              (click)="nextQuestion()"
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
