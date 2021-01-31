@@ -1,0 +1,21 @@
+<div class="fade-in">
+  <div *ngIf="isApprovedLastChance()" class="message">
+    <h2>Good job!!</h2>
+    <img class="image" src="../../../assets/win.png" alt="" />
+  </div>
+
+  <div *ngIf="!isApprovedLastChance()" class="message">
+    <h2>You need improve</h2>
+    <img class="image" src="../../../assets/loose.png" alt="" />
+  </div>
+
+  <div class="results">
+    <div>
+      <p style="text-align: center">Last result:</p>
+      <p class="last">{{ quizState.lastResult }} / 10</p>
+    </div>
+
+    <p>Your score: {{ quizState.score }}</p>
+    <p>Your attempts: {{ quizState.attempts }}</p>
+  </div>
+</div>

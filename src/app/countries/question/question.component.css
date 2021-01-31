@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.answer {
+  display: flex;
+  color: white;
+  cursor: pointer;
+
+  padding: 10px;
+  background-color: purple;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+.answer:focus,
+.answer:hover {
+  background-color: plum;
+}
+
+.selected {
+  background-color: plum;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 10px;
+}

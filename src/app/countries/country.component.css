@@ -1,0 +1,56 @@
+.container {
+  background-image: url(../../assets/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+
+  padding: 2rem;
+  margin: 3rem;
+
+  width: 50%;
+}
+@media screen and (max-width: 800px) {
+  .card {
+    width: 90%;
+  }
+}
+
+.options {
+  position: absolute;
+  bottom: 10px;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.option {
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  margin: 0 10px;
+  min-width: 10%;
+
+  text-align: center;
+}
+.option:hover {
+  background-color: rgb(231, 111, 231);
+}
+
+.active {
+  background-color: rgb(155, 56, 194);
+  color: white;
+}

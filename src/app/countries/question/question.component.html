@@ -1,0 +1,44 @@
+<div class="fade-in">
+  <div *ngIf="!loading">
+    <p class="title">What is the capital of {{ selectedCountry.name }}?</p>
+
+    <div class="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form">
+        <div *ngFor="let country of countries; index as i">
+          <label for="{{ country.capital }}">
+            <div class="answer" [id]="i" (click)="selectAnswerStyle(i)">
+              <input
+                type="radio"
+                style="display: none"
+                [id]="country.capital"
+                [value]="country.capital"
+                formControlName="answer"
+              />
+
+              {{ country.capital }}
+            </div>
+          </label>
+        </div>
+
+        <div class="button">
+          <button
+            class="btn btn-primary"
+            *ngIf="!isAnswered"
+            (click)="onSubmit()"
+          >
+            Check
+          </button>
+          <button
+            class="btn btn-secondary"
+            *ngIf="isAnswered"
+            (click)="nextQuestion()"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <h1 *ngIf="loading">Loading...</h1>
+</div>

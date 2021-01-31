@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Londrina Solid", cursive;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  width: 30%;
+
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: rgb(255, 119, 237);
+}
+.btn-primary:hover {
+  background-color: rgb(187, 35, 187);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: pink;
+}
+.btn-secondary:hover {
+  background-color: rgb(250, 84, 112);
+  color: white;
+}
+
+/* Animation */
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  transition: 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
