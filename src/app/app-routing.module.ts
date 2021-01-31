@@ -5,6 +5,7 @@ import { CountriesRountingModule } from './countries/countries-rounting.module';
 
 const routes: Routes = [
   // / -> Country routing
+  { path: '**', pathMatch: 'full', redirectTo: 'quiz' }
 ];
 
 @NgModule({
